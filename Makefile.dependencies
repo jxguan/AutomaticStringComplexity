@@ -1,0 +1,2 @@
+str_complexity.o: str_complexity.cc handler.cc
+handler.o: handler.cc
