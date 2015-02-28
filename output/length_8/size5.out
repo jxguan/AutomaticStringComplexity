@@ -1,0 +1,672 @@
+Final State: 1
+0: 1 2
+1: 0 0
+2: 3 0
+3: 2 4
+4: 3 4
+Unique String: 10110010
+
+Final State: 1
+0: 1 2
+1: 0 0
+2: 3 0
+3: 4 2
+4: 3 4
+Unique String: 10010110
+
+Final State: 1
+0: 1 2
+1: 0 0
+2: 3 0
+3: 4 2
+4: 4 3
+Unique String: 10001110
+
+Final State: 1
+0: 1 2
+1: 2 3
+2: 2 2
+3: 0 4
+4: 2 3
+Unique String: 01111100
+
+Final State: 1
+0: 1 2
+1: 2 3
+2: 2 2
+3: 0 4
+4: 3 2
+Unique String: 01101000
+
+Final State: 1
+0: 1 2
+1: 2 3
+2: 2 2
+3: 2 4
+4: 3 1
+Unique String: 01101011
+
+Final State: 1
+0: 1 2
+1: 2 3
+2: 2 2
+3: 2 4
+4: 4 0
+Unique String: 01100010
+
+Final State: 1
+0: 1 2
+1: 2 3
+2: 2 2
+3: 3 4
+4: 2 0
+Unique String: 01000110
+
+Final State: 1
+0: 1 2
+1: 2 3
+2: 2 2
+3: 4 0
+4: 2 3
+Unique String: 01010110
+
+Final State: 1
+0: 1 2
+1: 2 3
+2: 2 2
+3: 4 0
+4: 3 2
+Unique String: 01000010
+
+Final State: 1
+0: 1 2
+1: 2 3
+2: 2 2
+3: 4 2
+4: 0 4
+Unique String: 01011100
+
+Final State: 1
+0: 1 2
+1: 2 3
+2: 2 2
+3: 4 2
+4: 3 1
+Unique String: 01000001
+
+Final State: 1
+0: 1 2
+1: 2 3
+2: 2 2
+3: 4 3
+4: 0 2
+Unique String: 01111000
+
+Final State: 1
+0: 1 2
+1: 3 2
+2: 2 2
+3: 0 4
+4: 2 3
+Unique String: 00111100
+
+Final State: 1
+0: 1 2
+1: 3 2
+2: 2 2
+3: 0 4
+4: 3 2
+Unique String: 00101000
+
+Final State: 1
+0: 1 2
+1: 3 2
+2: 2 2
+3: 2 4
+4: 1 3
+Unique String: 00111110
+
+Final State: 1
+0: 1 2
+1: 3 2
+2: 2 2
+3: 2 4
+4: 3 1
+Unique String: 00101011
+
+Final State: 1
+0: 1 2
+1: 3 2
+2: 2 2
+3: 4 0
+4: 2 3
+Unique String: 00010110
+
+Final State: 1
+0: 1 2
+1: 3 2
+2: 2 2
+3: 4 2
+4: 0 4
+Unique String: 00011100
+
+Final State: 1
+0: 1 2
+1: 3 2
+2: 2 2
+3: 4 2
+4: 1 3
+Unique String: 00010100
+
+Final State: 1
+0: 1 2
+1: 3 2
+2: 2 2
+3: 4 3
+4: 2 0
+Unique String: 00111010
+
+Final State: 1
+0: 1 2
+1: 3 3
+2: 1 4
+3: 3 3
+4: 0 1
+Unique String: 11011010
+
+Final State: 1
+0: 1 2
+1: 3 3
+2: 1 4
+3: 3 3
+4: 4 1
+Unique String: 11000001
+
+Final State: 1
+0: 1 2
+1: 3 3
+2: 2 4
+3: 3 3
+4: 1 3
+Unique String: 10000010
+
+Final State: 1
+0: 1 2
+1: 3 3
+2: 2 4
+3: 3 3
+4: 3 1
+Unique String: 10000011
+
+Final State: 1
+0: 1 2
+1: 3 3
+2: 3 4
+3: 3 3
+4: 2 0
+Unique String: 11010110
+
+Final State: 1
+0: 1 2
+1: 3 3
+2: 4 1
+3: 3 3
+4: 0 1
+Unique String: 10010011
+
+Final State: 1
+0: 1 2
+1: 3 3
+2: 4 1
+3: 3 3
+4: 1 0
+Unique String: 10110111
+
+Final State: 1
+0: 1 2
+1: 3 3
+2: 4 1
+3: 3 3
+4: 1 4
+Unique String: 10111110
+
+Final State: 1
+0: 1 2
+1: 3 3
+2: 4 3
+3: 3 3
+4: 0 2
+Unique String: 10101000
+
+Final State: 1
+0: 1 2
+1: 3 4
+2: 1 3
+3: 4 1
+4: 4 4
+Unique String: 10010101
+
+Final State: 1
+0: 1 2
+1: 3 4
+2: 3 1
+3: 3 3
+4: 1 3
+Unique String: 11101010
+
+Final State: 1
+0: 1 2
+1: 3 4
+2: 3 1
+3: 3 3
+4: 2 3
+Unique String: 11101101
+
+Final State: 1
+0: 1 2
+1: 3 4
+2: 4 1
+3: 2 4
+4: 4 4
+Unique String: 11001001
+
+Final State: 1
+0: 2 0
+1: 3 3
+2: 3 4
+3: 3 3
+4: 3 1
+Unique String: 11111011
+
+Final State: 1
+0: 2 0
+1: 3 3
+2: 4 3
+3: 3 3
+4: 1 3
+Unique String: 11111000
+
+Final State: 1
+0: 2 0
+1: 3 3
+2: 4 3
+3: 3 3
+4: 3 1
+Unique String: 11111001
+
+Final State: 1
+0: 2 1
+1: 0 0
+2: 0 3
+3: 2 4
+4: 3 4
+Unique String: 01110001
+
+Final State: 1
+0: 2 1
+1: 0 0
+2: 0 3
+3: 2 4
+4: 4 3
+Unique String: 01101001
+
+Final State: 1
+0: 2 1
+1: 0 0
+2: 0 3
+3: 4 2
+4: 4 3
+Unique String: 01001101
+
+Final State: 1
+0: 2 1
+1: 0 0
+2: 3 0
+3: 4 2
+4: 3 4
+Unique String: 00010111
+
+Final State: 1
+0: 2 1
+1: 0 0
+2: 3 0
+3: 4 2
+4: 4 3
+Unique String: 00001111
+
+Final State: 1
+0: 2 1
+1: 2 3
+2: 2 2
+3: 0 4
+4: 3 2
+Unique String: 11101001
+
+Final State: 1
+0: 2 1
+1: 2 3
+2: 2 2
+3: 2 4
+4: 3 1
+Unique String: 11101011
+
+Final State: 1
+0: 2 1
+1: 2 3
+2: 2 2
+3: 2 4
+4: 4 0
+Unique String: 11100011
+
+Final State: 1
+0: 2 1
+1: 2 3
+2: 2 2
+3: 3 4
+4: 0 2
+Unique String: 11000101
+
+Final State: 1
+0: 2 1
+1: 2 3
+2: 2 2
+3: 4 0
+4: 2 3
+Unique String: 11010111
+
+Final State: 1
+0: 2 1
+1: 2 3
+2: 2 2
+3: 4 0
+4: 3 2
+Unique String: 11000011
+
+Final State: 1
+0: 2 1
+1: 3 2
+2: 2 2
+3: 0 4
+4: 2 3
+Unique String: 10111101
+
+Final State: 1
+0: 2 1
+1: 3 2
+2: 2 2
+3: 0 4
+4: 3 2
+Unique String: 10101001
+
+Final State: 1
+0: 2 1
+1: 3 2
+2: 2 2
+3: 2 4
+4: 4 0
+Unique String: 10100011
+
+Final State: 1
+0: 2 1
+1: 3 2
+2: 2 2
+3: 3 4
+4: 2 0
+Unique String: 10000111
+
+Final State: 1
+0: 2 1
+1: 3 2
+2: 2 2
+3: 4 0
+4: 2 3
+Unique String: 10010111
+
+Final State: 1
+0: 2 1
+1: 3 2
+2: 2 2
+3: 4 2
+4: 0 4
+Unique String: 10011101
+
+Final State: 1
+0: 2 1
+1: 3 2
+2: 2 2
+3: 4 2
+4: 1 3
+Unique String: 10010100
+
+Final State: 1
+0: 2 1
+1: 3 2
+2: 2 2
+3: 4 3
+4: 0 2
+Unique String: 10111001
+
+Final State: 1
+0: 2 1
+1: 3 3
+2: 1 4
+3: 3 3
+4: 0 1
+Unique String: 01001000
+
+Final State: 1
+0: 2 1
+1: 3 3
+2: 1 4
+3: 3 3
+4: 1 0
+Unique String: 01101100
+
+Final State: 1
+0: 2 1
+1: 3 3
+2: 3 4
+3: 3 3
+4: 0 2
+Unique String: 01111101
+
+Final State: 1
+0: 2 1
+1: 3 3
+2: 3 4
+3: 3 3
+4: 2 0
+Unique String: 01010111
+
+Final State: 1
+0: 2 1
+1: 3 3
+2: 4 1
+3: 3 3
+4: 1 0
+Unique String: 00100101
+
+Final State: 1
+0: 2 1
+1: 3 3
+2: 4 3
+3: 3 3
+4: 0 2
+Unique String: 00101001
+
+Final State: 1
+0: 2 1
+1: 3 4
+2: 1 3
+3: 3 3
+4: 3 2
+Unique String: 00110110
+
+Final State: 1
+0: 2 1
+1: 3 4
+2: 1 3
+3: 4 1
+4: 4 4
+Unique String: 00010101
+
+Final State: 1
+0: 2 1
+1: 3 4
+2: 1 4
+3: 4 2
+4: 4 4
+Unique String: 00010010
+
+Final State: 1
+0: 2 1
+1: 3 4
+2: 3 1
+3: 3 3
+4: 1 3
+Unique String: 01101010
+
+Final State: 1
+0: 2 3
+1: 1 2
+2: 2 2
+3: 2 4
+4: 2 1
+Unique String: 11100000
+
+Final State: 1
+0: 2 3
+1: 1 2
+2: 2 2
+3: 4 2
+4: 2 1
+Unique String: 10100000
+
+Final State: 1
+0: 2 3
+1: 1 3
+2: 3 4
+3: 3 3
+4: 3 1
+Unique String: 01100000
+
+Final State: 1
+0: 2 3
+1: 1 3
+2: 4 3
+3: 3 3
+4: 3 1
+Unique String: 00100000
+
+Final State: 1
+0: 2 3
+1: 2 1
+2: 2 2
+3: 2 4
+4: 1 2
+Unique String: 11011111
+
+Final State: 1
+0: 2 3
+1: 2 1
+2: 2 2
+3: 4 2
+4: 1 2
+Unique String: 10011111
+
+Final State: 1
+0: 2 3
+1: 2 4
+2: 2 2
+3: 1 2
+4: 0 4
+Unique String: 10111010
+
+Final State: 1
+0: 2 3
+1: 2 4
+2: 2 2
+3: 1 2
+4: 4 0
+Unique String: 10100110
+
+Final State: 1
+0: 2 3
+1: 2 4
+2: 2 2
+3: 2 1
+4: 4 0
+Unique String: 11100111
+
+Final State: 1
+0: 2 3
+1: 3 1
+2: 3 4
+3: 3 3
+4: 1 3
+Unique String: 01011111
+
+Final State: 1
+0: 2 3
+1: 3 1
+2: 4 3
+3: 3 3
+4: 1 3
+Unique String: 00011111
+
+Final State: 1
+0: 2 3
+1: 3 4
+2: 3 1
+3: 3 3
+4: 0 4
+Unique String: 01111001
+
+Final State: 1
+0: 2 3
+1: 3 4
+2: 3 1
+3: 3 3
+4: 4 0
+Unique String: 01100101
+
+Final State: 1
+0: 2 3
+1: 4 2
+2: 2 2
+3: 1 2
+4: 0 4
+Unique String: 10011010
+
+Final State: 1
+0: 2 3
+1: 4 2
+2: 2 2
+3: 1 2
+4: 4 0
+Unique String: 10000110
+
+Final State: 1
+0: 2 3
+1: 4 3
+2: 1 3
+3: 3 3
+4: 0 4
+Unique String: 00011000
+
+Final State: 1
+0: 2 3
+1: 4 3
+2: 3 1
+3: 3 3
+4: 0 4
+Unique String: 01011001
+
+Final State: 1
+0: 2 3
+1: 4 3
+2: 3 1
+3: 3 3
+4: 4 0
+Unique String: 01000101
+
