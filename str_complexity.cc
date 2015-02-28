@@ -20,7 +20,9 @@ struct automaton {
 static bool interrupted = false;
 static const int LENGTH_STRING = 10;
 static const int ALPHABET_SIZE = 2;
-static const string OUTPUT_FORMAT = "output/size";
+static const string OUTPUT_FORMAT = "output/length_";
+static string outputPath;
+
 struct node{
 	node* child[ALPHABET_SIZE];
 	int value;
@@ -69,7 +71,8 @@ static void outputTree(node* root, int depth, ofstream& file) {
 
 static void loadFromFile () {
 	ifstream file;
-	file.open("loadFile");
+	string filename = outputPath + "loadFile";
+	file.open(filename.c_str());
 	file >> numStringsRemaining;
 	file >> automaton.numStates;
 	file >> automaton.finalState;
@@ -88,10 +91,12 @@ static void loadFromFile () {
 
 static void writeToFile() {
 	ofstream file;
-	file.open("loadFile");
+	string fileName = outputPath + "loadFile";
+	file.open(fileName.c_str());
 	file << numStringsRemaining << endl;
 	file << automaton.numStates << endl;
 	file << automaton.finalState << endl;
+	cout << fileName << endl;
 	for (int i = 0; i < automaton.numStates; i++) {
 		int index = ALPHABET_SIZE * i;
 		file << automaton.transFunctions[index];
@@ -119,11 +124,13 @@ static void initialize () {
 	automaton.numStates = 2;
 	automaton.finalState = 0;
 	automaton.transFunctions = new int[ALPHABET_SIZE * automaton.numStates];
+	string command = "mkdir \"" + outputPath + "\"";
+	system(command.c_str());
 	for (int i = 0; i < ALPHABET_SIZE * automaton.numStates; ++i) {
 		automaton.transFunctions[i] = 0;		
 	}
-	string outputPath = OUTPUT_FORMAT + itos(automaton.numStates) + ".out";
-	output.open(outputPath.c_str(), ofstream::out | ofstream::app);
+	string outputFileName = outputPath + "size" + itos(automaton.numStates) + ".out";
+	output.open(outputFileName.c_str(), ofstream::out | ofstream::app);
 	ifstream dummy;
 	allStrings = buildTree(0, false, dummy);
 	cout << "Starting from the Beginning: " << endl;
@@ -141,8 +148,8 @@ static void growAutomaton() {
 		automaton.transFunctions[i] = 0;		
 	}
 	output.close();
-	string outputPath = OUTPUT_FORMAT + itos(automaton.numStates) + ".out";
-	output.open(outputPath.c_str(), ofstream::out | ofstream::app);
+	string outputFileName = outputPath + "size" + itos(automaton.numStates) + ".out";
+	output.open(outputFileName.c_str(), ofstream::out | ofstream::app);
 	cout << "Automaton Size Growed To: " << automaton.numStates << endl;
 }
 
@@ -304,7 +311,8 @@ static void outputAutomaton(string& str) {
 }
 
 int main(int argc, char *argv[]) {
-	installSignalHandler(SIGINT, handler);
+	installSignalHandler(SIGINT, handler);	
+	outputPath = OUTPUT_FORMAT + itos(LENGTH_STRING) + "/";
 	if (argc > 1 && strcmp(argv[1], "resume") == 0) {
 		loadFromFile();
 	}
