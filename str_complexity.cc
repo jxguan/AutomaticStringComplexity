@@ -7,6 +7,7 @@
 #include <sstream>
 #include <vector>
 #include <cmath>
+#include <sys/stat.h>
 #include "handler.cc"
 
 using namespace std;
@@ -18,7 +19,7 @@ struct automaton {
 } automaton;
 
 static bool interrupted = false;
-static const int LENGTH_STRING = 10;
+static int stringLength;
 static const int ALPHABET_SIZE = 2;
 static const string OUTPUT_FORMAT = "output/length_";
 static string outputPath;
@@ -45,7 +46,7 @@ static string itos(int i) // convert int to string
 
 static node* buildTree(int depth, bool fromFile, ifstream& file) {
 	node* root = new node;
-	if (depth == LENGTH_STRING) {
+	if (depth == stringLength) {
 		if (fromFile)
 			file >> root->value;
 		else
@@ -60,7 +61,7 @@ static node* buildTree(int depth, bool fromFile, ifstream& file) {
 }
 
 static void outputTree(node* root, int depth, ofstream& file) {
-	if (depth == LENGTH_STRING) {
+	if (depth == stringLength) {
 		file << root->value << endl;
 		return;
 	}
@@ -73,7 +74,15 @@ static void loadFromFile () {
 	ifstream file;
 	string filename = outputPath + "loadFile";
 	file.open(filename.c_str());
+	if (file.fail()) {
+		cout << "Error: Unable to open the loadFile" << endl;
+		exit(1);
+	}
 	file >> numStringsRemaining;
+	if (numStringsRemaining == 0) {
+		cout << "All Done! Quiting..." << endl;
+		exit(0);
+	}
 	file >> automaton.numStates;
 	file >> automaton.finalState;
 	automaton.transFunctions = new int[ALPHABET_SIZE * automaton.numStates];
@@ -82,8 +91,8 @@ static void loadFromFile () {
 	}
 	allStrings = buildTree(0, true, file);
 	file.close();
-	string outputPath = OUTPUT_FORMAT + itos(automaton.numStates) + ".out";
-	output.open(outputPath.c_str(), ofstream::out | ofstream::app);
+	string outputFileName = outputPath + "size" + itos(automaton.numStates) + ".out";
+	output.open(outputFileName.c_str(), ofstream::out | ofstream::app);
 	cout << "Loaded from last place where we stopped" << endl;
 	cout << "Current Automaton Size: " << automaton.numStates << endl;
 	cout << "Strings Left: " << numStringsRemaining << endl;
@@ -96,7 +105,6 @@ static void writeToFile() {
 	file << numStringsRemaining << endl;
 	file << automaton.numStates << endl;
 	file << automaton.finalState << endl;
-	cout << fileName << endl;
 	for (int i = 0; i < automaton.numStates; i++) {
 		int index = ALPHABET_SIZE * i;
 		file << automaton.transFunctions[index];
@@ -110,7 +118,7 @@ static void writeToFile() {
 }
 
 static void killTree(node* root, int depth) {
-	if (depth == LENGTH_STRING) {
+	if (depth == stringLength) {
 		delete root;
 		return;
 	}
@@ -120,12 +128,24 @@ static void killTree(node* root, int depth) {
 }
 
 static void initialize () {
-	numStringsRemaining = pow(ALPHABET_SIZE, LENGTH_STRING);
+	numStringsRemaining = pow(ALPHABET_SIZE, stringLength);
 	automaton.numStates = 2;
 	automaton.finalState = 0;
 	automaton.transFunctions = new int[ALPHABET_SIZE * automaton.numStates];
-	string command = "mkdir \"" + outputPath + "\"";
-	system(command.c_str());
+	struct stat st;
+	if (stat(outputPath.c_str(), &st) != -1 && S_ISDIR(st.st_mode)) {
+		string ans;
+		cout << "Folder exists. Overwrite? (y/n)";
+		getline(cin, ans);
+		if (ans == "n" || ans == "N")
+			exit(1);
+		string command = "rm " + outputPath + "*";
+		system(command.c_str());
+	}
+	else {
+		string command = "mkdir \"" + outputPath + "\"";
+		system(command.c_str());
+	}
 	for (int i = 0; i < ALPHABET_SIZE * automaton.numStates; ++i) {
 		automaton.transFunctions[i] = 0;		
 	}
@@ -135,7 +155,7 @@ static void initialize () {
 	allStrings = buildTree(0, false, dummy);
 	cout << "Starting from the Beginning: " << endl;
 	cout << "Alphabet Size: " << ALPHABET_SIZE << endl;
-	cout << "String Length: " << LENGTH_STRING << endl;
+	cout << "String Length: " << stringLength << endl;
 	cout << "Number of Total Strings: " << numStringsRemaining << endl;
 }
 
@@ -197,7 +217,7 @@ static void rightTimes(vector<int>& right, vector<vector<int>>& mat) {
 
 static bool checkString (string& str) {
 	node* curr = allStrings;
-	for (int i = 0; i < LENGTH_STRING; i++) {
+	for (int i = 0; i < stringLength; i++) {
 		curr = curr->child[str[i] - '0'];
 	}
 	if (curr->value == 0) {
@@ -265,7 +285,7 @@ static bool recogUniqueString(string& states) {
 	for (int i = 1; i < automaton.numStates; i++) {
 		currentStates.push_back(0);
 	}
-	for (int i = 0; i < LENGTH_STRING; i++) {
+	for (int i = 0; i < stringLength; i++) {
 		leftTimes(currentStates, mat);
 	}
 	if (currentStates[automaton.finalState] != 1)
@@ -274,7 +294,7 @@ static bool recogUniqueString(string& states) {
 	vector<int> right(automaton.numStates);
 	left[0] = 1;
 	right[automaton.finalState] = 1;
-	states = stateSequence(left, right, LENGTH_STRING, mat);
+	states = stateSequence(left, right, stringLength, mat);
 	return true;
 }
 
@@ -290,7 +310,7 @@ static int getSymbol(int currentState, int nextState) {
 static string generateInput(string& states) {
 	string ans;
 	int currentState = states[0] - '0';
-	for (int i = 1; i < LENGTH_STRING + 1; i++) {
+	for (int i = 1; i < stringLength + 1; i++) {
 		ans += itos(getSymbol(currentState, states[i] - '0'));
 		currentState = states[i] - '0';
 	}
@@ -312,29 +332,48 @@ static void outputAutomaton(string& str) {
 
 int main(int argc, char *argv[]) {
 	installSignalHandler(SIGINT, handler);	
-	outputPath = OUTPUT_FORMAT + itos(LENGTH_STRING) + "/";
-	if (argc > 1 && strcmp(argv[1], "resume") == 0) {
-		loadFromFile();
-	}
-	else if (argc == 1) {
-		initialize();
-	}
-	else {
-		cout << "Error: please call with an optional \"resume\" parameter or no parameter" << endl;
+	if (argc < 2) {
+		cout << "Error: please call with the string length and an optional \"resume\" flag" << endl;
 		return 1;
 	}
-	
+	else {
+		if (sscanf(argv[1], "%d", &stringLength) != 1) {
+			cout << "Error: The first parameter must be a valid integer" << endl;
+			return 1;
+		}
+		outputPath = OUTPUT_FORMAT + itos(stringLength) + "/";
+		if (argc > 2 && strcmp(argv[2], "resume") == 0) {
+			loadFromFile();
+		}
+		else if (argc == 2) {
+			initialize();
+		}
+		else {
+			cout << "Error: please call with an optional \"resume\" parameter or no parameter" << endl;
+		return 1;
+		}	
 
+	
+	}	
+	int counter = 0;
 	while(!interrupted) {
 		string states;
+		bool needWriteToFile = false;
+		if (counter == 1000000) {
+			cout << "..." << endl;
+			counter = 0;
+			needWriteToFile = true;
+		}
 		if (recogUniqueString(states)) {
 			string input = generateInput(states);
 			if (checkString(input)) {
 				outputAutomaton(input);
 				numStringsRemaining--;
+				needWriteToFile = true;
 				cout << "Number of Strings Remaining: " << numStringsRemaining << endl;
 				if (numStringsRemaining == 0) {
 					cout << "All strings Found! Done!" << endl;
+					writeToFile();
 					output.close();
 					killTree(allStrings, 0);
 					return 0;
@@ -343,6 +382,9 @@ int main(int argc, char *argv[]) {
 			}
 		}
 		iterateToNextAutomaton();
+		counter++;
+		if (needWriteToFile)
+			writeToFile();
 	}
 	writeToFile();
 	output.close();
