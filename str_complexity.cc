@@ -21,7 +21,8 @@ struct automaton {
 static bool interrupted = false;
 static int stringLength;
 static const int ALPHABET_SIZE = 2;
-static const string OUTPUT_FORMAT = "output/length_";
+static const string OUTPUT_FORMAT = "2015winter/cs199/output/length_";
+static const string LOG_FILE_NAME = "2015winter/cs199/log";
 static string outputPath;
 
 struct node{
@@ -32,6 +33,13 @@ struct node{
 ofstream output;
 node* allStrings;
 int numStringsRemaining;
+
+static void log (const string& message) {
+	ofstream out;
+	out.open(LOG_FILE_NAME.c_str(), ofstream::out | ofstream::app);
+	out << message << " " << stringLength << endl;
+	out.close();
+}
 
 static void handler (int sig) {
 	interrupted = true;
@@ -80,7 +88,7 @@ static void loadFromFile () {
 	}
 	file >> numStringsRemaining;
 	if (numStringsRemaining == 0) {
-		cout << "All Done! Quiting..." << endl;
+		cout << "For Length " << stringLength << " All Done! Quiting..." << endl;
 		exit(0);
 	}
 	file >> automaton.numStates;
@@ -93,9 +101,9 @@ static void loadFromFile () {
 	file.close();
 	string outputFileName = outputPath + "size" + itos(automaton.numStates) + ".out";
 	output.open(outputFileName.c_str(), ofstream::out | ofstream::app);
-	cout << "Loaded from last place where we stopped" << endl;
-	cout << "Current Automaton Size: " << automaton.numStates << endl;
-	cout << "Strings Left: " << numStringsRemaining << endl;
+	// cout << "Loaded from last place where we stopped" << endl;
+	// cout << "Current Automaton Size: " << automaton.numStates << endl;
+	// cout << "Strings Left: " << numStringsRemaining << endl;
 }
 
 static void writeToFile() {
@@ -144,6 +152,7 @@ static void initialize () {
 	}
 	else {
 		string command = "mkdir \"" + outputPath + "\"";
+		cout << command << endl;
 		system(command.c_str());
 	}
 	for (int i = 0; i < ALPHABET_SIZE * automaton.numStates; ++i) {
@@ -153,10 +162,10 @@ static void initialize () {
 	output.open(outputFileName.c_str(), ofstream::out | ofstream::app);
 	ifstream dummy;
 	allStrings = buildTree(0, false, dummy);
-	cout << "Starting from the Beginning: " << endl;
-	cout << "Alphabet Size: " << ALPHABET_SIZE << endl;
-	cout << "String Length: " << stringLength << endl;
-	cout << "Number of Total Strings: " << numStringsRemaining << endl;
+	// cout << "Starting from the Beginning: " << endl;
+	// cout << "Alphabet Size: " << ALPHABET_SIZE << endl;
+	// cout << "String Length: " << stringLength << endl;
+	// cout << "Number of Total Strings: " << numStringsRemaining << endl;
 }
 
 static void growAutomaton() {
@@ -170,7 +179,7 @@ static void growAutomaton() {
 	output.close();
 	string outputFileName = outputPath + "size" + itos(automaton.numStates) + ".out";
 	output.open(outputFileName.c_str(), ofstream::out | ofstream::app);
-	cout << "Automaton Size Growed To: " << automaton.numStates << endl;
+	cout << "For Length " << stringLength << " Automaton Size Growed To: " << automaton.numStates << endl;
 }
 
 static void iterateToNextAutomaton () {
@@ -343,9 +352,11 @@ int main(int argc, char *argv[]) {
 		}
 		outputPath = OUTPUT_FORMAT + itos(stringLength) + "/";
 		if (argc > 2 && strcmp(argv[2], "resume") == 0) {
+			log ("Resuming");
 			loadFromFile();
 		}
 		else if (argc == 2) {
+			log ("Starting");
 			initialize();
 		}
 		else {
@@ -360,7 +371,7 @@ int main(int argc, char *argv[]) {
 		string states;
 		bool needWriteToFile = false;
 		if (counter == 1000000) {
-			cout << "..." << endl;
+			cout << "loadFile Written " << stringLength << endl;
 			counter = 0;
 			needWriteToFile = true;
 		}
@@ -370,9 +381,10 @@ int main(int argc, char *argv[]) {
 				outputAutomaton(input);
 				numStringsRemaining--;
 				needWriteToFile = true;
-				cout << "Number of Strings Remaining: " << numStringsRemaining << endl;
+				// cout << "Number of Strings Remaining: " << numStringsRemaining << endl;
 				if (numStringsRemaining == 0) {
-					cout << "All strings Found! Done!" << endl;
+					cout << "For Length " << stringLength << " All strings Found! Done!" << endl;
+					log("Finished");
 					writeToFile();
 					output.close();
 					killTree(allStrings, 0);
@@ -389,6 +401,6 @@ int main(int argc, char *argv[]) {
 	writeToFile();
 	output.close();
 	killTree(allStrings, 0);
-	cout << endl << "Interrupted, current status written to loadFile." << endl;
+	// cout << endl << "Interrupted, current status written to loadFile." << endl;
 	return 0;
 }

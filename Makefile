@@ -25,17 +25,20 @@ LDFLAGS = -lm -pthread -lxml2 -lrand -L/usr/class/cs110/local/lib -lthreads
 # In this section, you list the files that are part of the project.
 # If you add/change names of header/source files, here is where you
 # edit the Makefile.
-SOURCES = \
-	 str_complexity.cc \
-	 handler.cc
-HEADERS = \
 
+PROGRAMS = str_complexity.cc distribute_jobs.cc
+EXTRAS = handler.cc myth-nodes.cc
+HEADERS = myth-nodes.h string-utils.h
+SOURCES = $(PROGRAMS) $(EXTRAS)
 OBJECTS = $(SOURCES:.cc=.o)
-TARGETS = str_complexity
+TARGETS = $(PROGRAMS:.cc=)
 
 default: $(TARGETS)
 
 str_complexity: str_complexity.o
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
+
+distribute_jobs: distribute_jobs.o myth-nodes.o
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 
 # In make's default rules, a .o automatically depends on its .c file
@@ -55,8 +58,9 @@ Makefile.dependencies:: $(SOURCES) $(HEADERS)
 
 filefree:
 	@rm -fr output/*
+	@rm -f log
 
-clean: filefree
+clean:
 	@rm -f $(TARGETS) $(OBJECTS) core Makefile.dependencies
 
 spartan: clean
