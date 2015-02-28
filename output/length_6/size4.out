@@ -1,0 +1,210 @@
+Final State: 0
+0: 1 2
+1: 1 1
+2: 1 3
+3: 0 1
+Unique String: 110110
+
+Final State: 0
+0: 1 2
+1: 1 1
+2: 3 1
+3: 0 1
+Unique String: 100100
+
+Final State: 0
+0: 1 2
+1: 1 1
+2: 3 1
+3: 1 0
+Unique String: 101101
+
+Final State: 0
+0: 1 2
+1: 2 3
+2: 2 2
+3: 0 1
+Unique String: 010010
+
+Final State: 0
+0: 1 2
+1: 2 3
+2: 2 2
+3: 1 0
+Unique String: 011011
+
+Final State: 0
+0: 1 2
+1: 3 2
+2: 2 2
+3: 1 0
+Unique String: 001001
+
+Final State: 1
+0: 0 2
+1: 3 3
+2: 1 3
+3: 3 3
+Unique String: 000010
+
+Final State: 1
+0: 0 2
+1: 3 3
+2: 3 1
+3: 3 3
+Unique String: 000011
+
+Final State: 1
+0: 1 2
+1: 0 0
+2: 0 3
+3: 2 3
+Unique String: 111000
+
+Final State: 1
+0: 1 2
+1: 0 0
+2: 0 3
+3: 3 2
+Unique String: 110100
+
+Final State: 1
+0: 1 2
+1: 0 0
+2: 3 0
+3: 3 2
+Unique String: 100110
+
+Final State: 1
+0: 1 2
+1: 2 3
+2: 2 2
+3: 0 3
+Unique String: 011100
+
+Final State: 1
+0: 1 2
+1: 2 3
+2: 3 1
+3: 3 3
+Unique String: 110101
+
+Final State: 1
+0: 1 2
+1: 3 2
+2: 2 2
+3: 0 3
+Unique String: 001100
+
+Final State: 1
+0: 1 2
+1: 3 3
+2: 0 1
+3: 3 3
+Unique String: 101011
+
+Final State: 1
+0: 1 2
+1: 3 3
+2: 2 1
+3: 3 3
+Unique String: 100001
+
+Final State: 1
+0: 2 0
+1: 3 3
+2: 1 3
+3: 3 3
+Unique String: 111100
+
+Final State: 1
+0: 2 0
+1: 3 3
+2: 3 1
+3: 3 3
+Unique String: 111101
+
+Final State: 1
+0: 2 1
+1: 0 0
+2: 0 3
+3: 2 3
+Unique String: 011001
+
+Final State: 1
+0: 2 1
+1: 0 0
+2: 3 0
+3: 2 3
+Unique String: 001011
+
+Final State: 1
+0: 2 1
+1: 0 0
+2: 3 0
+3: 3 2
+Unique String: 000111
+
+Final State: 1
+0: 2 1
+1: 2 3
+2: 2 2
+3: 3 0
+Unique String: 110011
+
+Final State: 1
+0: 2 1
+1: 3 2
+2: 1 3
+3: 3 3
+Unique String: 001010
+
+Final State: 1
+0: 2 1
+1: 3 2
+2: 2 2
+3: 3 0
+Unique String: 100011
+
+Final State: 1
+0: 2 1
+1: 3 3
+2: 1 0
+3: 3 3
+Unique String: 010100
+
+Final State: 1
+0: 2 1
+1: 3 3
+2: 1 2
+3: 3 3
+Unique String: 011110
+
+Final State: 1
+0: 2 3
+1: 1 2
+2: 2 2
+3: 2 1
+Unique String: 110000
+
+Final State: 1
+0: 2 3
+1: 1 3
+2: 3 1
+3: 3 3
+Unique String: 010000
+
+Final State: 1
+0: 2 3
+1: 2 1
+2: 2 2
+3: 1 2
+Unique String: 101111
+
+Final State: 1
+0: 2 3
+1: 3 1
+2: 1 3
+3: 3 3
+Unique String: 001111
+

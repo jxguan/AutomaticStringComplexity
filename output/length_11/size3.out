@@ -1,0 +1,36 @@
+Final State: 1
+0: 0 1
+1: 2 2
+2: 2 2
+Unique String: 00000000001
+
+Final State: 1
+0: 1 0
+1: 2 2
+2: 2 2
+Unique String: 11111111110
+
+Final State: 1
+0: 1 2
+1: 2 0
+2: 2 2
+Unique String: 01010101010
+
+Final State: 1
+0: 1 2
+1: 2 1
+2: 2 2
+Unique String: 01111111111
+
+Final State: 1
+0: 2 1
+1: 0 2
+2: 2 2
+Unique String: 10101010101
+
+Final State: 1
+0: 2 1
+1: 1 2
+2: 2 2
+Unique String: 10000000000
+

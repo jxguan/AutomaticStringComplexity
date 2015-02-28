@@ -1,0 +1,208 @@
+Final State: 0
+0: 1 2
+1: 1 1
+2: 1 3
+3: 1 4
+4: 3 0
+Unique String: 111011
+
+Final State: 0
+0: 1 2
+1: 1 1
+2: 1 3
+3: 1 4
+4: 4 0
+Unique String: 111001
+
+Final State: 0
+0: 1 2
+1: 1 1
+2: 1 3
+3: 2 4
+4: 1 0
+Unique String: 110111
+
+Final State: 0
+0: 1 2
+1: 1 1
+2: 1 3
+3: 3 4
+4: 0 1
+Unique String: 110010
+
+Final State: 0
+0: 1 2
+1: 1 1
+2: 1 3
+3: 4 1
+4: 3 0
+Unique String: 110001
+
+Final State: 0
+0: 1 2
+1: 1 1
+2: 2 3
+3: 1 4
+4: 1 0
+Unique String: 100111
+
+Final State: 0
+0: 1 2
+1: 1 1
+2: 2 3
+3: 4 1
+4: 1 0
+Unique String: 100101
+
+Final State: 0
+0: 1 2
+1: 1 1
+2: 3 1
+3: 1 4
+4: 0 3
+Unique String: 101110
+
+Final State: 0
+0: 1 2
+1: 1 1
+2: 3 1
+3: 1 4
+4: 4 0
+Unique String: 101001
+
+Final State: 0
+0: 1 2
+1: 1 1
+2: 3 1
+3: 2 4
+4: 0 1
+Unique String: 100010
+
+Final State: 0
+0: 1 2
+1: 1 1
+2: 3 1
+3: 4 2
+4: 0 1
+Unique String: 101000
+
+Final State: 0
+0: 1 2
+1: 1 1
+2: 3 1
+3: 4 3
+4: 0 1
+Unique String: 101100
+
+Final State: 0
+0: 1 2
+1: 1 1
+2: 3 2
+3: 1 4
+4: 0 1
+Unique String: 111010
+
+Final State: 0
+0: 1 2
+1: 1 3
+2: 2 2
+3: 2 4
+4: 0 1
+Unique String: 000110
+
+Final State: 0
+0: 1 2
+1: 1 3
+2: 2 2
+3: 4 2
+4: 0 1
+Unique String: 000100
+
+Final State: 0
+0: 1 2
+1: 1 3
+2: 2 2
+3: 4 2
+4: 1 0
+Unique String: 000101
+
+Final State: 0
+0: 1 2
+1: 2 3
+2: 2 2
+3: 1 4
+4: 0 1
+Unique String: 010110
+
+Final State: 0
+0: 1 2
+1: 2 3
+2: 2 2
+3: 1 4
+4: 1 0
+Unique String: 010111
+
+Final State: 0
+0: 1 2
+1: 2 3
+2: 2 2
+3: 3 4
+4: 1 0
+Unique String: 010011
+
+Final State: 0
+0: 1 2
+1: 2 3
+2: 2 2
+3: 4 1
+4: 1 0
+Unique String: 011101
+
+Final State: 0
+0: 1 2
+1: 2 3
+2: 2 2
+3: 4 2
+4: 3 0
+Unique String: 010001
+
+Final State: 0
+0: 1 2
+1: 3 1
+2: 2 2
+3: 2 4
+4: 0 1
+Unique String: 011010
+
+Final State: 0
+0: 1 2
+1: 3 1
+2: 2 2
+3: 4 2
+4: 0 1
+Unique String: 011000
+
+Final State: 0
+0: 1 2
+1: 3 2
+2: 2 2
+3: 2 4
+4: 0 3
+Unique String: 001110
+
+Final State: 0
+0: 1 2
+1: 3 2
+2: 2 2
+3: 4 1
+4: 0 1
+Unique String: 001000
+
+Final State: 0
+0: 1 2
+1: 3 2
+2: 2 2
+3: 4 3
+4: 1 0
+Unique String: 001101
+

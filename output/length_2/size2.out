@@ -1,0 +1,20 @@
+Final State: 0
+0: 0 1
+1: 1 1
+Unique String: 00
+
+Final State: 0
+0: 1 0
+1: 1 1
+Unique String: 11
+
+Final State: 1
+0: 0 1
+1: 0 0
+Unique String: 01
+
+Final State: 1
+0: 1 0
+1: 0 0
+Unique String: 10
+
