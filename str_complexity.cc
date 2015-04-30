@@ -80,6 +80,7 @@ static void outputTree(node* root, int depth, ofstream& file) {
 
 static void loadFromFile () {
 	ifstream file;
+  outputPath += "/";
 	string filename = outputPath + "loadFile";
 	file.open(filename.c_str());
 	if (file.fail()) {
@@ -147,7 +148,7 @@ static void initialize () {
 		getline(cin, ans);
 		if (ans == "n" || ans == "N")
 			exit(1);
-		string command = "rm " + outputPath + "*";
+		string command = "rm " + outputPath + "/*";
 		system(command.c_str());
 	}
 	else {
@@ -158,6 +159,7 @@ static void initialize () {
 	for (int i = 0; i < ALPHABET_SIZE * automaton.numStates; ++i) {
 		automaton.transFunctions[i] = 0;		
 	}
+  outputPath += "/";
 	string outputFileName = outputPath + "size" + itos(automaton.numStates) + ".out";
 	output.open(outputFileName.c_str(), ofstream::out | ofstream::app);
 	ifstream dummy;
@@ -337,6 +339,7 @@ static void outputAutomaton(string& str) {
 		output << endl;
 	}
 	output << "Unique String: " << str << endl << endl;
+  output.flush();
 }
 
 int main(int argc, char *argv[]) {
@@ -350,7 +353,7 @@ int main(int argc, char *argv[]) {
 			cout << "Error: The first parameter must be a valid integer" << endl;
 			return 1;
 		}
-		outputPath = OUTPUT_FORMAT + itos(stringLength) + "/";
+		outputPath = OUTPUT_FORMAT + itos(stringLength);
 		if (argc > 2 && strcmp(argv[2], "resume") == 0) {
 			log ("Resuming");
 			loadFromFile();
