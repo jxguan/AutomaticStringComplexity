@@ -12,7 +12,7 @@ CXX = g++
 #  -std=c++0x                 go with the c++0x extensions for thread support, unordered maps, etc
 #  -D_GLIBCXX_USE_NANOSLEEP   included for this_thread::sleep_for and this_thread::sleep_until support
 #  -D_GLIBCXX_USE_SCHED_YIELD included for this_thread::yield support
-CXXFLAGS = -g -Wall -pedantic -O0 -std=c++0x -D_GLIBCXX_USE_NANOSLEEP -D_GLIBCXX_USE_SCHED_YIELD -I/usr/include/libxml2 -I/usr/class/cs110/local/include
+CXXFLAGS = -g -Wall -pedantic -O2 -std=c++0x -D_GLIBCXX_USE_NANOSLEEP -D_GLIBCXX_USE_SCHED_YIELD -I/usr/include/libxml2 -I/usr/class/cs110/local/include
 
 # The LDFLAGS variable sets flags for linker
 #  -lm       link in libm (math library)
