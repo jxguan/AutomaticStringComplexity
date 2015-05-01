@@ -12,19 +12,31 @@
 
 using namespace std;
 
+/* Structure: automaton
+ * --------------------
+ * The abstraction of an automaton. The states are represented as integers from
+ * 0 to numStates - 1. The transFunctions is an integer array that is
+ * ALPHABET_SIZE * numStates in size.
+ */
 struct automaton {
 	int numStates;
 	int finalState;
 	int* transFunctions;
 } automaton;
 
-static bool interrupted = false;
+static bool interrupted = false;      // True if the user Ctrl + C
 static int stringLength;
 static const int ALPHABET_SIZE = 2;
+// The output directory with format included. Need to change this if running on
+// a different machine.
 static const string OUTPUT_FORMAT = "2015winter/cs199/output/length_";
+// The location of the log file. Also need to change if running on a different
+// machine.
 static const string LOG_FILE_NAME = "2015winter/cs199/log";
 static string outputPath;
 
+/* A node for the tree structure that is used to represent all the strings of
+ * the specific length. */
 struct node{
 	node* child[ALPHABET_SIZE];
 	int value;
@@ -34,6 +46,11 @@ ofstream output;
 node* allStrings;
 int numStringsRemaining;
 
+/* Function: log
+ * -------------
+ * Prints out the logging information to file.
+ * TODO: This involves race conditions when running concurrently.
+ */
 static void log (const string& message) {
 	ofstream out;
 	out.open(LOG_FILE_NAME.c_str(), ofstream::out | ofstream::app);
@@ -41,10 +58,18 @@ static void log (const string& message) {
 	out.close();
 }
 
+/* Function: handler
+ * -----------------
+ * Exception handler for SIGINT. 
+ */
 static void handler (int sig) {
 	interrupted = true;
 }
 
+/* Function: itos
+ * --------------
+ * Converts an integer into a string.
+ */
 static string itos(int i) // convert int to string
 {
     stringstream s;
@@ -52,6 +77,12 @@ static string itos(int i) // convert int to string
     return s.str();
 }
 
+/* Function: buildTree
+ * -------------------
+ * Initialize the tree where all the leaf nodes represent the different string.
+ * The strings are represented by the path from root to the leaf. If fromFile
+ * is true, the program will load the tree from the loafFile passed in as file
+ */
 static node* buildTree(int depth, bool fromFile, ifstream& file) {
 	node* root = new node;
 	if (depth == stringLength) {
@@ -68,6 +99,10 @@ static node* buildTree(int depth, bool fromFile, ifstream& file) {
 	return root;
 }
 
+/* Function: outputTree
+ * --------------------
+ * Output the tree to the file.
+ */
 static void outputTree(node* root, int depth, ofstream& file) {
 	if (depth == stringLength) {
 		file << root->value << endl;
@@ -78,6 +113,12 @@ static void outputTree(node* root, int depth, ofstream& file) {
 	}
 }
 
+/* Function: loadFromFile
+ * ----------------------
+ * Loads the searching state from the file. This includes the tree, the size of
+ * the automata that we are looking at, and the last automaton that we have
+ * searched through.
+ */
 static void loadFromFile () {
 	ifstream file;
   outputPath += "/";
@@ -107,6 +148,9 @@ static void loadFromFile () {
 	// cout << "Strings Left: " << numStringsRemaining << endl;
 }
 
+/* Function: writeToFile
+ * ---------------------
+ * Write the current program state to the loadFile. */
 static void writeToFile() {
 	ofstream file;
 	string fileName = outputPath + "loadFile";
@@ -126,6 +170,10 @@ static void writeToFile() {
 	file.close();
 }
 
+/* FunctionL: killTree
+ * -------------------
+ * Frees all memory for the tree.
+ */
 static void killTree(node* root, int depth) {
 	if (depth == stringLength) {
 		delete root;
@@ -136,6 +184,13 @@ static void killTree(node* root, int depth) {
 	delete root;
 }
 
+/* Function: initialize
+ * --------------------
+ * Initialize the program state as opposed to reading from the loadFile. This
+ * will let the program start searching from automata of size 2 and set all the
+ * string of the specific length to be unvisited by creating a brand new tree
+ * to represent all the strings.
+ */
 static void initialize () {
 	numStringsRemaining = pow(ALPHABET_SIZE, stringLength);
 	automaton.numStates = 2;
@@ -170,6 +225,11 @@ static void initialize () {
 	// cout << "Number of Total Strings: " << numStringsRemaining << endl;
 }
 
+/* Function: growAutomaton
+ * -----------------------
+ * Grow the automaton size by 1, and start fresh from transition functions
+ * array set to be all zero.
+ */
 static void growAutomaton() {
 	automaton.numStates++;
 	automaton.finalState = 0;
@@ -184,6 +244,13 @@ static void growAutomaton() {
 	cout << "For Length " << stringLength << " Automaton Size Growed To: " << automaton.numStates << endl;
 }
 
+/* Function: iterateToNextAutomaton
+ * --------------------------------
+ * Iterate to the next automaton by increasing the lsb of the transition
+ * function array by 1 and update correspondingly. If it is already the last
+ * automaton of the specific size, calls growAutomaton() to increase the size
+ * of the automaton.
+ */
 static void iterateToNextAutomaton () {
 	int index = automaton.numStates * ALPHABET_SIZE - 1;
 	automaton.transFunctions[index]++;
@@ -202,6 +269,10 @@ static void iterateToNextAutomaton () {
 	}
 }
 
+/* Function: leftTimes
+ * -------------------
+ * Helper function that left times a vector with a matrix.
+ */
 static void leftTimes(vector<int>& left, vector<vector<int>>& mat) {
 	vector<int> temp;
 	for (int j = 0; j < automaton.numStates; j++) {
@@ -214,6 +285,10 @@ static void leftTimes(vector<int>& left, vector<vector<int>>& mat) {
 	left = temp;
 }
 
+/* Function: rightTimes
+ * --------------------
+ * Helper function that right times a matrix with a vector.
+ */
 static void rightTimes(vector<int>& right, vector<vector<int>>& mat) {
 	vector<int> temp;
 	for (int j = 0; j < automaton.numStates; j++) {
@@ -226,6 +301,11 @@ static void rightTimes(vector<int>& right, vector<vector<int>>& mat) {
 	right = temp;
 }
 
+/* Function: checkString
+ * ---------------------
+ * Walk down the tree to check whether this string has already been identified
+ * by a previously found automaton.
+ */
 static bool checkString (string& str) {
 	node* curr = allStrings;
 	for (int i = 0; i < stringLength; i++) {
@@ -238,6 +318,11 @@ static bool checkString (string& str) {
 	return false;
 }
 
+/* Function: stateSequence
+ * -----------------------
+ * Recursive function that uses divide and conquer to retrieve the unique
+ * sequence of states that would lead the automaton to an accepting state.
+ */
 static string stateSequence(vector<int>& left, vector<int>& right, const int numTransitions, 
 							vector<vector<int>>& mat) {
 	if (numTransitions < 0) {
@@ -276,6 +361,10 @@ static string stateSequence(vector<int>& left, vector<int>& right, const int num
 			stateSequence(currentLeft, right, remaining - 1, mat);
 }
 
+/* Function: recogUniqueString
+ * ---------------------------
+ * Returns true if the automaton recognizes a unique string.
+ */
 static bool recogUniqueString(string& states) {
 	vector<vector<int>> mat;
 	for (int i = 0; i < automaton.numStates; i++) {
@@ -309,6 +398,11 @@ static bool recogUniqueString(string& states) {
 	return true;
 }
 
+/* Function: getSymbol
+ * -------------------
+ * Gets the symbol that allows the automaton to go from currentState to
+ * nextState.
+ */
 static int getSymbol(int currentState, int nextState) {
 	int index = currentState * ALPHABET_SIZE;
 	for (int i = 0; i < ALPHABET_SIZE; i++) {
@@ -318,6 +412,10 @@ static int getSymbol(int currentState, int nextState) {
 	return -1;
 }
 
+/* Function: generateInput
+ * -----------------------
+ * Generate the input string from the state sequence.
+ */
 static string generateInput(string& states) {
 	string ans;
 	int currentState = states[0] - '0';
@@ -328,6 +426,10 @@ static string generateInput(string& states) {
 	return ans;
 }
 
+/* Function: outputAutomaton
+ * -------------------------
+ * Output the qualifying automaton to file.
+ */
 static void outputAutomaton(string& str) {
 	output << "Final State: " << automaton.finalState << endl;
 	for (int i = 0; i < automaton.numStates; i++) {
@@ -342,6 +444,11 @@ static void outputAutomaton(string& str) {
   output.flush();
 }
 
+/* Function: main
+ * --------------
+ * Usage: "[resume] k" where k is the length of the string. resume is an
+ * optional flag if want to continue from a loadFile.
+ */
 int main(int argc, char *argv[]) {
 	installSignalHandler(SIGINT, handler);	
 	if (argc < 2) {
@@ -366,7 +473,6 @@ int main(int argc, char *argv[]) {
 			cout << "Error: please call with an optional \"resume\" parameter or no parameter" << endl;
 		return 1;
 		}	
-
 	
 	}	
 	int counter = 0;

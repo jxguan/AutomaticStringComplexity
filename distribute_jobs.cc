@@ -1,3 +1,10 @@
+/* Dispatches jobs to run on multiple myth machines.
+ * Usage: resume 8 9 10
+ * Dispatch program to run on stirng length of 8 9 and 10 with the flag
+ * "resume".
+ * If don't wish to resume, put an aribitrary string in the second parameter.
+ */
+
 #include "myth-nodes.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -10,7 +17,6 @@
 using namespace std;
 
 vector<string> kMythNodes = loadMythNodes();
-
 
 void spawnWorker(size_t length, const string& command) {
   cout << "Spawning worker for " << length << " with ssh command: " << endl 
